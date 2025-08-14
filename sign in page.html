@@ -290,7 +290,6 @@
   </div>
 
   <script>
-    // Using variables instead of localStorage for compatibility
     let registeredUsers = [
       { username: 'demo', password: 'demo123' },
       { username: 'user', password: 'password' }
@@ -304,7 +303,6 @@
     const strengthBar = document.getElementById('strengthBar');
     const signupBtn = document.getElementById('signupBtn');
 
-    // Password strength checker
     passwordField.addEventListener('input', function() {
       const password = this.value;
       const strength = checkPasswordStrength(password);
@@ -339,7 +337,6 @@
       strengthBar.className = `strength-fill strength-${strength.level}`;
     }
 
-    // Confirm password validation
     confirmPasswordField.addEventListener('input', function() {
       const password = passwordField.value;
       const confirmPassword = this.value;
@@ -350,9 +347,7 @@
         this.style.borderColor = '#e1e5e9';
       }
     });
-
-    // Form submission
-    form.addEventListener('submit', function(e) {
+form.addEventListener('submit', function(e) {
       e.preventDefault();
       
       const formData = new FormData(form);
@@ -363,9 +358,7 @@
       const password = formData.get('password');
       const confirmPassword = formData.get('confirmPassword');
       const termsAccepted = formData.get('terms');
-
-      // Validation
-      if (!firstName || !lastName || !email || !username || !password || !confirmPassword) {
+if (!firstName || !lastName || !email || !username || !password || !confirmPassword) {
         showAlert('Please fill in all required fields.', 'error');
         return;
       }
@@ -384,16 +377,12 @@
         showAlert('Please accept the Terms of Service and Privacy Policy.', 'error');
         return;
       }
-
-      // Check if username already exists
       const existingUser = registeredUsers.find(u => u.username === username);
       if (existingUser) {
         showAlert('Username already exists. Please choose a different one.', 'error');
         return;
       }
-
-      // Add new user to our demo data
-      registeredUsers.push({ username, password });
+  registeredUsers.push({ username, password });
       
       showAlert('Account created successfully! Redirecting to login...', 'success');
       
@@ -403,7 +392,6 @@
     });
     
     function showAlert(message, type) {
-      // Remove any existing alerts
       const existingAlert = document.querySelector('.custom-alert');
       if (existingAlert) {
         existingAlert.remove();
@@ -433,8 +421,6 @@
         setTimeout(() => alert.remove(), 300);
       }, 4000);
     }
-    
-    // Add CSS animations
     const style = document.createElement('style');
     style.textContent = `
       @keyframes slideIn {
